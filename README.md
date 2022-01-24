@@ -68,8 +68,9 @@ uri=share_point.get_file_uri(file_path)
 
 #从【"/filearchive/FBAttArchive/test/testa/test.xlsx"】下载文件
 file_path="/filearchive/FBAttArchive/test/testa/test.xlsx"
-
 content=share_point.download_file(file_path)
+
+#将文件存入filename
 with open(filename, "wb") as f:
     f.write(content)
 

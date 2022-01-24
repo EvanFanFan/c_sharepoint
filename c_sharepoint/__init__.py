@@ -2,6 +2,7 @@ import requests
 import urllib
 from requests_ntlm import HttpNtlmAuth
 import json
+import re
 
 class Share_Point(object):
     def __init__(self, base_url,username,password,site):
@@ -167,3 +168,17 @@ class Share_Point(object):
         else:
             error_code=result["error"]["message"]
             raise Exception(error_code)
+
+    def download_file(self,file_path):
+        url=f"""{self.base_url}/{self.site}/{file_path}"""
+        # 如果文件过大可以用stream流下载,可实现文段下载
+        res=self.session.get(url,stream=True)
+        if  'Content-Disposition' in res.headers.keys():
+            filename=res.headers['Content-Disposition']
+            searchObj = re.search(r'filename=(.*)', filename, re.M | re.I)
+            if searchObj:
+                filename = urllib.parse.unquote(searchObj.group(1))
+        else:
+            filename=url[url.rfind("/")+1:]
+        # res.content 是文件的bytes流,可以直接用io.wirte() 'wb'写入文件
+        return res.content

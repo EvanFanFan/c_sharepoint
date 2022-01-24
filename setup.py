@@ -5,12 +5,11 @@ with open("README.md", "r",encoding="utf-8") as fh:
 
 # print(long_description)
 long_description="""
-from c_sharepoint import Share_Point
-share_point=Share_Point(base_url,username,password,site)
+https://github.com/EvanFanFan/c_sharepoint
 """
 setup(  
     name = 'c_sharepoint',  
-    version = '0.0.2',
+    version = '0.0.4',
     # keywords = ('chinesename',),  
     description = 'c_sharepoint',  
     long_description=long_description,

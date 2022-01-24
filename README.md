@@ -63,4 +63,14 @@ file_path="/filearchive/FBAttArchive/test/testa/test.xlsx"
 uri=share_point.get_file_uri(file_path)
 ```
 
-##### 
+##### 下载文件
+```python
+
+#从【"/filearchive/FBAttArchive/test/testa/test.xlsx"】下载文件
+file_path="/filearchive/FBAttArchive/test/testa/test.xlsx"
+
+content=share_point.download_file(file_path)
+with open(filename, "wb") as f:
+    f.write(content)
+
+```
